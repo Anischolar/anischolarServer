@@ -28,7 +28,7 @@ app.post("/api/deposit", async (req, res) => {
     </AutoCreate>`;
 
   try {
-    const response = await fetch("https://sandbox.yo.co.ug/services/yopaymentsdev/task.php", {
+    const response = await fetch("https://paymentsapi1.yo.co.ug/ybs/task.php", {
       method: "POST",
       headers: {
         "Content-Type": "text/xml",
