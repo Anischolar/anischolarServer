@@ -8,9 +8,9 @@ app.use(cors());
 app.use(express.json());
 
 app.post("/api/deposit", async (req, res) => {
-  const { amount, account, provider } = req.body;
+  const { amount, account, provider, narrative } = req.body;
 
-  if (!amount || !account || !provider) {
+  if (!amount || !account || !provider || !narrative) {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
@@ -23,7 +23,7 @@ app.post("/api/deposit", async (req, res) => {
         <Amount>${amount}</Amount>
         <Account>${account}</Account>
         <AccountProviderCode>${provider}</AccountProviderCode>
-        <Narrative>Deposit for Order</Narrative>
+        <Narrative>${narrative}</Narrative>
       </Request>
     </AutoCreate>`;
 
