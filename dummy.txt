@@ -1,0 +1,96 @@
+// app.post('/api/notification', (req, res) => {
+//   console.log(req.body);
+  
+//   try {
+//     const publicKey = process.env.YO_PUBLIC_KEY;
+//     const {
+//       date_time,
+//       amount,
+//       narrative,
+//       network_ref,
+//       external_ref,
+//       msisdn,
+//       signature
+//     } = req.body;
+
+//     // 1. Verify signature
+//     const verificationData = [
+//       date_time || '',
+//       amount || '',
+//       narrative || '',
+//       network_ref || '',
+//       external_ref || '',
+//       msisdn || ''
+//     ].join('');
+
+//     console.log(verificationData);
+    
+//     const verifier = crypto.createVerify('SHA1');
+//     verifier.update(verificationData);
+//     const isValid = verifier.verify(publicKey, signature, 'base64');
+
+//     if (!isValid) {
+//       console.error('Invalid IPN signature');
+//       return res.sendStatus(200);
+//     }
+
+//     // 2. Check for duplicates
+//     // const existingTransaction = transactions[external_ref];
+//     // if (existingTransaction && existingTransaction.status !== 'pending') {
+//     //   console.log('Duplicate transaction detected');
+//     //   return res.sendStatus(200);
+//     // }
+
+//     // 3. Update transaction status
+//     transactions[external_ref] = {
+//       ...transactions[external_ref],
+//       status: 'completed',
+//       updated_at: new Date().toISOString(),
+//       network_ref,
+//       msisdn,
+//       ipn_data: req.body
+//     };
+
+//     console.log(transactions);    
+
+//   } catch (error) {
+//     console.error('IPN processing error:', error);
+//     if (req.body.external_ref) {
+//       transactions[req.body.external_ref] = {
+//         ...transactions[req.body.external_ref],
+//         status: 'failed',
+//         error: error.message
+//       };
+//     }
+//     res.sendStatus(200);
+//   }
+// });
+
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+    <AutoCreate>
+      <Request>
+        <APIUsername>100147977165</APIUsername>
+        <APIPassword></APIPassword>
+        <Method>acdepositfunds</Method>
+        <Amount>505</Amount>
+        <Account>256394795835</Account>
+        <AccountProviderCode>MTN</AccountProviderCode>
+        <Narrative>This is a sunday test 1</Narrative>
+        <ExternalReference>1234567890</ExternalReference>
+        <InstantNotificationUrl>https://3d79-41-210-155-61.ngrok-free.app/api/notification</InstantNotificationUrl>
+        <FailureNotificationUrl>https://3d79-41-210-155-61.ngrok-free.app/api/failurenotification</FailureNotificationUrl>
+      </Request>
+    </AutoCreate>
+<?xml version="1.0" encoding="UTF-8"?>
+<AutoCreate>
+<Response>
+<Status>OK</Status>
+<StatusCode>0</StatusCode>
+<TransactionStatus>SUCCEEDED</TransactionStatus>
+<TransactionReference>Z7hLWQDtKDKDez97OMs3T0DMd48XKHZSYLgJbNDfjJQy7GELviY1VNicQ8kQocKJbae60e63feb5985056d685a90cbc174d</TransactionReference>
+<MNOTransactionReferenceId>31147046485</MNOTransactionReferenceId>
+<IssuedReceiptNumber>13</IssuedReceiptNumber>
+</Response>
+</AutoCreate>
